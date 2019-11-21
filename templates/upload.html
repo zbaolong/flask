@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+{% block head %}
+<title>文件上传</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+<div class="col">
+<form action="/upload/up/" enctype='multipart/form-data' method="post">
+<div class="from-group">
+<input type="file" name="file">
+</div>
+<button type="submit" class="btn btn-outline-primary">上传</button>
+<a href="/upload/down/">下载模板</a>
+</form>
+</div>
+</div>
+</div>
+{% endblock %}
+

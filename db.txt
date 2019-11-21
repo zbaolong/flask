@@ -1,0 +1,13 @@
+mysql -h 172.16.230.131 -uroot -pTm7WVdKWWmxbgsN9U9HaT
+
+devops   servers
+
+mysql> create table servers(
+    -> id bigint unsigned auto_increment,
+    -> server_name varchar(100) not null,
+    -> server_ip varchar(50) not null,
+    -> server_port int not null,
+    -> server_user varchar(50) not null
+    -> primary key (id)
+    -> )engine=innodb default charset=utf8;
+

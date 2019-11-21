@@ -1,0 +1,92 @@
+{% extends "base.html"%}
+{% block head %}
+  <title>wbdan</title>
+  <script type="text/javascript">
+  $(document).ready(function(){
+      $("#ajaxtest").click(function(){
+        $.ajax({
+          url: '/ajaxtest',
+          type: 'get', 
+          cache: false,
+          success: function(data){
+              $('#ajaxtestresult').html(data);
+          }
+        });
+
+   });
+
+
+      $("#ajaxget").click(function(){
+        server_name = $("#server_name").val();
+        server_ip = $("#server_ip").val();
+        $.ajax({
+          url: '/ajaxget',
+          type: 'get', 
+          cache: false,
+          data:{
+              server_name: server_name,
+              server_ip: server_ip,
+          },
+          success: function(data){
+              $('#ajaxgetresult').html(data);
+          }
+        });
+
+   });
+
+      $("#ajaxpost").click(function(){
+        username = $("#username").val();
+        passwd = $("#passwd").val();
+        $.ajax({
+          url: '/ajaxpost',
+          type: 'post', 
+          cache: false,
+          data:{
+              username: username,
+              passwd: passwd,
+          },
+          success: function(data){
+              result = JSON.parse(data);
+              username = result['username']
+              password = result['password']
+              $('#ajaxpostresult').html(username + password);
+          }
+        });
+
+   });
+
+
+ });
+  </script>
+{% endblock %}
+{% block body %}
+  <p>cbcba</p>
+<div class="container">
+<div class="row">
+<br/>
+<br/>
+<div class="row">
+  <div class="col">
+  <button type="button" id="ajaxtest" class="btn btn-primary">ajaxtest</button>
+  <pre id="ajaxtestresult"></pre>
+  </div>
+  <div class="col">
+  <form>
+  <input type="text" class="form-control" id="server_name" placeholder="Server name">
+  <input type="text" class="form-control" id="server_ip" placeholder="Server ip">
+  <button type="button" id="ajaxget" class="btn btn-primary">ajaxget</button>
+  </form>
+  <pre id="ajaxgetresult"></pre>
+  </div>
+  <div class="col">
+  <form>
+  <input type="text" class="form-control" id="username" placeholder="username">
+  <input type="text" class="form-control" id="passwd" placeholder="password">
+  <button type="button" id="ajaxpost" class="btn btn-primary">ajaxpost</button>
+  </form>
+  <pre id="ajaxpostresult"></pre>
+  </div>
+</div>
+</div>
+{% endblock %}
+
