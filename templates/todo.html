@@ -1,0 +1,39 @@
+{% extends "base.html"%}
+{% block head %}
+  <title>mytask</title>
+{% endblock %}
+{% block body %}
+<form action="{{ url_for('add') }}" method=post class=add-entry>
+    <h2>请添加您的任务计划:</h2>
+      <label>user:</label> <textarea name=user rows=1 cols=20></textarea>
+      <label>info:</label> <textarea name=content rows=1 cols=20></textarea>
+       <input type=submit value=submit>
+</form>
+<table class="table table-bordered table-hover">
+<thead>
+<th>姓名</th>
+<th>任务</th>
+<th>状态</th>
+<th>删除</th>
+<th>更新状态</th>
+</thead>
+<tbody>
+<meta charset="UTF-8">
+{% for todo in todos %}
+<tr>
+<td>{{todo.user}}</td>
+<td>{{todo.content}}</td>
+{%- if todo.is_finished -%}
+                <td>finished</td>
+        {%- else-%}
+                <td>unfinished</td>
+        {%- endif %}
+<td><a href="{{ url_for('delete',content=todo.content)}}">delete</a></td>
+<td><a href="{{ url_for('finish',content=todo.content)}}">done</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
+

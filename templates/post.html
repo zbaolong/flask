@@ -1,0 +1,54 @@
+{% extends "base.html"%}
+{% block head %}
+  <title>wbdan</title>
+    <!--Post请求-->
+    <script>
+        $(function () {
+            function submit_form(e) {
+                var data = {
+                    'name': $("#name").val(),
+                    {#                      'age': $("#age").val(),#}
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '/postcm/postman',
+                    data: data,
+                    dataType: 'text',//希望服务器返回json格式的数据
+                    success: function (data) {
+                        alert(JSON.stringify(data));
+                        var newdata = data;
+                        var table = $("#ListTable");
+                        var body = table.find('tbody:eq(0)');
+                        body.empty();
+                        var tr;
+                        var jieguo = newdata.split("\\n");
+                        for(i in jieguo){
+                            tr = $("<tr id='aaaaaaaa_" + i + "' ></tr>");
+                            tr.append($("<td>" + jieguo[i]+ "</td>"));
+                            table.append(tr);
+                        }
+
+                    }
+                });
+            }
+
+            $('#button').bind('click', submit_form);
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h2>简单命令查询</h2>
+<span style="color: green;font-size: 24px;">请输入Linux命令：</span><input name="name" id="name" maxlength="150" style="widh:200px;height:30px;" type="text"/>
+<button id="button" class="btn btn-outline-primary">执行命令</button>
+<hr align="left" width="50%" />
+<div class="jumbotron">
+<table id="ListTable">
+    <tbody></tbody>
+</table>
+<h3>结果: <span id="name" style="border-bottom: green solid 2px;">{{ title+'\n' }} result</span></h3>
+</div>
+</div>
+{% endblock %}
+

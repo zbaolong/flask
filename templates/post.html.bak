@@ -1,0 +1,48 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <script type=text/javascript src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <!--Post请求-->
+    <script>
+        $(function () {
+            function submit_form(e) {
+                var data = {
+                    'name': $("#name").val(),
+                    {#                      'age': $("#age").val(),#}
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '{{url_for("postcm.postman")}}',
+                    data: data,
+                    dataType: 'text',//希望服务器返回json格式的数据
+                    success: function (data) {
+                        alert(JSON.stringify(data));
+                        var newdata = data;
+                        var table = $("#ListTable");
+                        var body = table.find('tbody:eq(0)');
+                        body.empty();
+                        var tr;
+                        var jieguo = newdata.split("\\n");
+                        for(i in jieguo){
+                            tr = $("<tr id='aaaaaaaa_" + i + "' ></tr>");
+                            tr.append($("<td>" + jieguo[i]+ "</td>"));
+                            table.append(tr);
+                        }
+
+                    }
+                });
+            }
+
+            $('#button').bind('click', submit_form);
+        });
+    </script>
+</head>
+<body>
+<h1>梦想linux命令发射器</h1>
+<span style="color: red;font-size: 24px;">请输入Linux命令：</span><input name="name" id="name" style="widh:110px;height:30px;" type="text"/>
+<button id="button" class="btn btn-info">发送按钮</button>
+<table id="ListTable">
+    <tbody></tbody>
+</table>
+<h3>Hello: <span id="name" style="border-bottom: darkred solid 5px;">{{ title+'\n' }} result</span></h3>
+</body>
