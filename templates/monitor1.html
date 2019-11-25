@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block head %}
+<title>home page</title>
+{% endblock %}
+{% block body %}
+<div class="container">
+<label>namespace选择：</label>
+<form action="{{ url_for('monitor.info') }}" method="post">
+<select name="ns">
+  <option value="ib-prod">ib-prod</option>
+  <option value="ib-test1">ib-test1</option>
+  <option value="ib-test2">ib-test2</option>
+  <option value="ib-test3">ib-test3</option>
+</select>
+<button type="submit" class="btn btn-smi">查看服务器</button><a href="{{ url_for('monitor.cm') }}">查看配置中心</a>
+</form>
+<div class="jumbotron">
+<p>show service monitor</p>
+
+<table class="table table-bordered table-hover">
+<thead>
+<th>pods name</th>
+<th>status</th>
+</thead>
+<tbody>
+{% for k,v in moni1.items() %}
+<tr>
+<td>{{ k }}</td>
+<td>{{ v }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}
+

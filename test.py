@@ -5,6 +5,7 @@ from upload import upload
 from server import server
 from login import login
 from postcm import postcm
+from monitor import monitor
 
 import datetime
 from time import time
@@ -25,6 +26,7 @@ app.register_blueprint(upload,url_prefix="/upload")
 app.register_blueprint(server,url_prefix="/server")
 app.register_blueprint(login,url_prefix="/login")
 app.register_blueprint(postcm,url_prefix="/postcm")
+app.register_blueprint(monitor,url_prefix="/monitor")
 @app.before_request
 def before_request():
     print(request.path)
@@ -126,7 +128,8 @@ def delete(content):
     return redirect('/task/')
 
 @app.route('/todo/search/<content>')
-def find(content):
+def find():
+    #content = request.form.get('content')   
    # todos = mongo.db.todos.find(
    #     {'user': {"$regex": content},'content': {"$regex": content}} 
    # )

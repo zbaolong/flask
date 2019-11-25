@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block head %}
+<title>home page</title>
+{% endblock %}
+{% block body %}
+<div class="container">
+<label>namespace选择：</label>
+<form action="{{ url_for('monitor.info') }}" method="post">
+<select name="ns">
+  <option value="ib-prod">ib-prod</option>
+  <option value="ib-test1">ib-test1</option>
+  <option value="ib-test2">ib-test2</option>
+  <option value="ib-test3">ib-test3</option>
+</select>
+<button type="submit" class="btn btn-smi">查 看</button>
+</form>
+<div class="jumbotron">
+<p>show service monitor</p>
+  <ul style="list-style-type:none">
+  {% for i in a %}
+    <li>{{ i }}</li>
+  {% endfor %}
+  </ul>
+</div>
+</div>
+{% endblock %}
+
