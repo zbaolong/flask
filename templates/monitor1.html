@@ -4,8 +4,8 @@
 {% endblock %}
 {% block body %}
 <div class="container">
-<label>namespace选择：</label>
 <form action="{{ url_for('monitor.info') }}" method="post">
+<label>namespace选择：</label>
 <select name="ns">
   <option value="ib-prod">ib-prod</option>
   <option value="ib-test1">ib-test1</option>
@@ -21,12 +21,14 @@
 <thead>
 <th>pods name</th>
 <th>status</th>
+<th>caozuo</th>
 </thead>
 <tbody>
 {% for k,v in moni1.items() %}
 <tr>
 <td>{{ k }}</td>
 <td>{{ v }}</td>
+<td><a href="#">restart</a></td>
 </tr>
 {% endfor %}
 </tbody>

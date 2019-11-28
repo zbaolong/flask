@@ -4,8 +4,8 @@
 {% endblock %}
 {% block body %}
 <div class="container">
-<label>namespace选择：</label>
 <form action="{{ url_for('monitor.info') }}" method="post">
+<label>namespace选择：</label>
 <select name="ns">
   <option value="ib-prod">ib-prod</option>
   <option value="ib-test1">ib-test1</option>

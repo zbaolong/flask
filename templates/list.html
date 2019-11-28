@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+<title>Hello from flask</title>
+<table>
+{% for item in items %}
+<tr>
+<td><a href="/cat/{{item}}">{{item}}</a><br/> <a href="">delete</a></td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
+

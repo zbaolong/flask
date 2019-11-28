@@ -3,11 +3,14 @@
   <title>mytask</title>
 {% endblock %}
 {% block body %}
+<div class="container">
 <form action="{{ url_for('add') }}" method=post class="form-inline">
      &nbsp; <label>处理人：</label> <textarea class="form-control" name=user rows=1 cols=20></textarea>&nbsp;
       <label>任务内容：</label> <textarea class="form-control" name=content rows=1 cols=20></textarea>&nbsp;&nbsp;
        <input type=submit value=submit class="btn btn-outline-primary">
 </form>
+<br />
+<div class="jumbotron">
 <table class="table table-bordered table-hover">
 <thead>
 <th>姓 名</th>
@@ -33,6 +36,7 @@
 {% endfor %}
 </tbody>
 </table>
-
+</div>
+</div>
 {% endblock %}
 

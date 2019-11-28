@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block head %}
+<title>home page</title>
+{% endblock %}
+{% block body %}
+<div class="container">
+<form action="{{ url_for('updatev') }}" method="POST">
+<label>命名空间：</label>
+<select name="ns">
+  <option value="ib-prod">ib-prod</option>
+  <option value="ib-test1">ib-test1</option>
+  <option value="ib-test2">ib-test2</option>
+  <option value="ib-test3">ib-test3</option>
+</select>
+&nbsp<label>服务名称：</label><input type="text" name="service"  placeholder="service" size="30"/>
+&nbsp<label>版本号：</label><input type="text" name="version"  placeholder="version" size="30"/>
+<button type="submit" class="btn btn-smi">更新版本</button>
+<a href="#">同步业务包</a>
+</form>
+<div class="jumbotron">
+<p>show service version update</p>
+  <ul style="list-style-type:none">
+    <li>{{ text }}</li>
+  </ul>
+</div>
+</div>
+{% endblock %}
+

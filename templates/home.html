@@ -5,7 +5,17 @@
 {% block body %}
 <div class="container">
 <div class="jumbotron">
-<p>welcom to my home</p>
+<p><h3>welcom to my home</h3></p>
+<p>功能简介</p>
+<ul>
+<li>服务部署：基于helm部署pods</li>
+<li>版本更新：更新test/prod环境版本，同步业务包</li>
+<li>服务查看和重启服务：根据namespace 来查看pods status，以及可以手动restart</li>
+<li>配置中心查看：根据namespace 来查看 配置中心配置，暂时不提供编辑功能</li>
+<li>shell命令执行：跳板机的shell命令行</li>
+<li>服务器设备管理：可以添加服务器信息，设备账号信息，支持单个添加，和模板导入批量添加，支持更新，支持删除和批量删除，关键字搜索</li>
+<li>任务状态管理：工作工单任务添加，删除，更新状态</li>
+</ul>
 </div>
 </div>
 {% endblock %}

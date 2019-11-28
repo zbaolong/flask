@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block head %}
+<title>home page</title>
+{% endblock %}
+{% block body %}
+<div class="container">
+<form action="{{ url_for('deploy') }}" method="POST">
+<label>环境:</label>
+<select name="ns">
+  <option value="ib-prod">ib-prod</option>
+  <option value="ib-test1">ib-test1</option>
+  <option value="ib-test2">ib-test2</option>
+  <option value="ib-test3">ib-test3</option>
+  <option value="faceid">faceid</option>
+  <option value="faceid-test">faceid-test</option>
+</select>
+<label>版本:</label>
+<select name="version">
+{% for li1 in list1 %}
+  <option value="{{ li1 }}">{{ li1 }}</option>
+{% endfor %}
+</select>
+<label>配置:</label>
+<select name="global">
+{% for li2 in list2 %}
+  <option value="{{ li2 }}">{{ li2 }}</option>
+{% endfor %}
+</select>
+<label>服务:</label><input type="text" name="service"  placeholder="service" size="15"/>
+<label>别名:</label><input type="text" name="alis"  placeholder="alis" size="15"/>
+<button type="submit" class="btn btn-smi">部署</button>
+</form>
+<div class="jumbotron">
+<p>show service deploy result !</p>
+  <ul style="list-style-type:none">
+    <li>{{ command }}</li>
+  </ul>
+</div>
+</div>
+{% endblock %}
+

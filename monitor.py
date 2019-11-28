@@ -45,3 +45,20 @@ def cm():
     #print(cmlist)
     #return cmlist
     return render_template('cm.html',a=a)
+@monitor.route('/center',methods=['get','post'])
+def center():
+    ns = request.form.get('ns')
+    os.environ['ns']=str(ns)
+    all = os.popen("kubectl describe cm config-center-data -n $ns|sed -n '/Data/,/Events/p'")
+    #return render_template("monitor.html")
+    all = all.read()
+    print(all)
+    print(type(all))
+    #a = ' '.join(all)
+    a = all.split('\n')
+    print(a)
+    #cmlist = a.split(' ')
+    #print(cmlist)
+    #return cmlist
+    return render_template('cm.html',a=a)
+
